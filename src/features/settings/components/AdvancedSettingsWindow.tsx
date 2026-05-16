@@ -119,7 +119,11 @@ const AdvancedSettingsWindow = () => {
         setPasteSoundEnabled,
         setPasteMethod,
         installedApps,
-        setFileTransferPath
+        setFileTransferPath,
+        hideDockIcon: _hideDockIcon,
+        setHideDockIcon,
+        cloudSyncContentPrefs: _cloudSyncContentPrefs,
+        setCloudSyncContentPrefs
     } = appState;
 
     const tagManagerSizeRef = useRef<{ width: number; height: number } | null>(null);
@@ -218,7 +222,9 @@ const AdvancedSettingsWindow = () => {
         setEmojiPanelEnabled,
         setTagManagerEnabled,
         setEmojiPanelTab,
-        setEmojiFavorites
+        setEmojiFavorites,
+        setHideDockIcon,
+        setCloudSyncContentPrefs
     });
 
     const fetchEffectiveTransferPath = useCallback(() => {

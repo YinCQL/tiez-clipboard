@@ -55,6 +55,10 @@ interface UseSettingsPostInitOptions {
   setCleanupRules: (val: string) => void;
   setAppCleanupPolicies: (val: AppCleanupPolicy[]) => void;
   setSilentStart: (val: boolean) => void;
+  setFollowMouse: (val: boolean) => void;
+  setShowAppBorder: (val: boolean) => void;
+  setRegistryWinVEnabled: (val: boolean) => void;
+  setPasteMethod: (val: string) => void;
   setShowSourceAppIcon: (val: boolean) => void;
 
   setDeleteAfterPaste: (val: boolean) => void;
@@ -137,6 +141,10 @@ export const useSettingsPostInit = ({
   setCleanupRules,
   setAppCleanupPolicies,
   setSilentStart,
+  setFollowMouse,
+  setShowAppBorder,
+  setRegistryWinVEnabled,
+  setPasteMethod,
   setShowSourceAppIcon,
 
   setDeleteAfterPaste,
@@ -308,6 +316,10 @@ export const useSettingsPostInit = ({
       }
     }
     setSilentStart(settings["app.silent_start"] !== "false");
+    setFollowMouse(settings["app.follow_mouse"] === "true");
+    setShowAppBorder(settings["app.show_app_border"] === "true");
+    setRegistryWinVEnabled(settings["app.registry_win_v_enabled"] === "true");
+    setPasteMethod(settings["app.paste_method"] || "simulate");
     setShowSourceAppIcon(settings["app.show_source_app_icon"] !== "false");
 
 
@@ -472,6 +484,10 @@ export const useSettingsPostInit = ({
     setCleanupRules,
     setAppCleanupPolicies,
     setSilentStart,
+    setFollowMouse,
+    setShowAppBorder,
+    setRegistryWinVEnabled,
+    setPasteMethod,
     setShowSourceAppIcon,
 
     setDeleteAfterPaste,

@@ -83,6 +83,11 @@ export const useAppState = (): AppState => {
   const [captureRichText, setCaptureRichText] = useState(false);
   const [richTextSnapshotPreview, setRichTextSnapshotPreview] = useState(true);
   const [silentStart, setSilentStart] = useState(true);
+  const [followMouse, setFollowMouse] = useState(false);
+  const [showAppBorder, setShowAppBorder] = useState(false);
+  const [winClipboardDisabled, setWinClipboardDisabled] = useState(false);
+  const [registryWinVEnabled, setRegistryWinVEnabled] = useState(false);
+  const [pasteMethod, setPasteMethod] = useState("simulate");
   const [theme, setTheme] = useState(DEFAULT_THEME);
   const [colorMode, setColorMode] = useState("system");
   const [showSourceAppIcon, setShowSourceAppIcon] = useState(true);
@@ -280,6 +285,16 @@ export const useAppState = (): AppState => {
     setRichTextSnapshotPreview,
     silentStart,
     setSilentStart,
+    followMouse,
+    setFollowMouse,
+    showAppBorder,
+    setShowAppBorder,
+    winClipboardDisabled,
+    setWinClipboardDisabled,
+    registryWinVEnabled,
+    setRegistryWinVEnabled,
+    pasteMethod,
+    setPasteMethod,
     theme,
     setTheme,
     colorMode,

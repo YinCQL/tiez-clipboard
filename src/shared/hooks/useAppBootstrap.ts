@@ -3,18 +3,19 @@ import type { Dispatch, SetStateAction } from "react";
 import type { DefaultAppsMap, InstalledAppOption } from "../../features/app/types";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { isTauriRuntime } from "../lib/tauriRuntime";
 
 interface UseAppBootstrapOptions {
   fetchEffectiveTransferPath: () => void;
   setDataPath: Dispatch<SetStateAction<string>>;
   setInstalledApps: Dispatch<SetStateAction<InstalledAppOption[]>>;
   setAutoStart: Dispatch<SetStateAction<boolean>>;
-  setWinClipboardDisabled: Dispatch<SetStateAction<boolean>>;
   setDefaultApps: Dispatch<SetStateAction<DefaultAppsMap>>;
   setFileServerEnabled: Dispatch<SetStateAction<boolean>>;
   setActualPort: Dispatch<SetStateAction<string>>;
   setLocalIp: Dispatch<SetStateAction<string>>;
   setAvailableIps: Dispatch<SetStateAction<string[]>>;
+  setWinClipboardDisabled: Dispatch<SetStateAction<boolean>>;
 }
 
 interface FileServerStatusPayload {
@@ -28,14 +29,16 @@ export const useAppBootstrap = ({
   setDataPath,
   setInstalledApps,
   setAutoStart,
-  setWinClipboardDisabled,
   setDefaultApps,
   setFileServerEnabled,
   setActualPort,
   setLocalIp,
-  setAvailableIps
+  setAvailableIps,
+  setWinClipboardDisabled: _setWinClipboardDisabled
 }: UseAppBootstrapOptions) => {
   useEffect(() => {
+    if (!isTauriRuntime()) return;
+
     fetchEffectiveTransferPath();
 
     invoke<string>("get_data_path").then(setDataPath).catch(console.error);
@@ -58,11 +61,6 @@ export const useAppBootstrap = ({
 
     invoke<boolean>("is_autostart_enabled").then(setAutoStart).catch(console.error);
 
-    invoke<boolean>("get_windows_clipboard_history")
-      .then((enabled) => {
-        setWinClipboardDisabled(!enabled);
-      })
-      .catch(console.error);
 
     const types = ["text", "rich_text", "image", "video", "code", "url"];
     types.forEach(async (type) => {
@@ -116,6 +114,5 @@ export const useAppBootstrap = ({
     setFileServerEnabled,
     setInstalledApps,
     setLocalIp,
-    setWinClipboardDisabled
   ]);
 };

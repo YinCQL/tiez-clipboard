@@ -126,6 +126,16 @@ export interface AppState {
   setRichTextSnapshotPreview: StateSetter<boolean>;
   silentStart: boolean;
   setSilentStart: StateSetter<boolean>;
+  followMouse: boolean;
+  setFollowMouse: StateSetter<boolean>;
+  showAppBorder: boolean;
+  setShowAppBorder: StateSetter<boolean>;
+  winClipboardDisabled: boolean;
+  setWinClipboardDisabled: StateSetter<boolean>;
+  registryWinVEnabled: boolean;
+  setRegistryWinVEnabled: StateSetter<boolean>;
+  pasteMethod: string;
+  setPasteMethod: StateSetter<string>;
   theme: string;
   setTheme: StateSetter<string>;
   colorMode: string;
