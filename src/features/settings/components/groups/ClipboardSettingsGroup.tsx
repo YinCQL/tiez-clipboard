@@ -297,7 +297,7 @@ const ClipboardSettingsGroup = (props: ClipboardSettingsGroupProps) => {
                         </div>
                         <div
                             className={`key-group ${props.isRecordingRich ? 'recording' : ''}`}
-                            onClick={() => props.setIsRecordingRich(true)}
+                            onClick={(e) => { props.setIsRecordingRich(true); e.currentTarget.focus(); }}
                             tabIndex={0}
                             onKeyDown={(e) => {
                                 if (!props.isRecordingRich) return;
@@ -342,7 +342,7 @@ const ClipboardSettingsGroup = (props: ClipboardSettingsGroupProps) => {
                         </div>
                         <div
                             className={`key-group ${props.isRecordingSearch ? 'recording' : ''}`}
-                            onClick={() => props.setIsRecordingSearch(true)}
+                            onClick={(e) => { props.setIsRecordingSearch(true); e.currentTarget.focus(); }}
                             tabIndex={0}
                             onKeyDown={(e) => {
                                 if (!props.isRecordingSearch) return;
@@ -485,7 +485,7 @@ const ClipboardSettingsGroup = (props: ClipboardSettingsGroupProps) => {
                             </div>
                             <div
                                 className={`key-group ${props.isRecordingSequential ? 'recording' : ''}`}
-                                onClick={() => props.setIsRecordingSequential(true)}
+                                onClick={(e) => { props.setIsRecordingSequential(true); e.currentTarget.focus(); }}
                                 tabIndex={0}
                                 onKeyDown={(e) => {
                                     if (!props.isRecordingSequential) return;
@@ -705,7 +705,7 @@ const ClipboardSettingsGroup = (props: ClipboardSettingsGroupProps) => {
 
                         <div
                             className={`key-group ${props.isRecording ? 'recording' : ''}`}
-                            onClick={() => props.setIsRecording(true)}
+                            onClick={(e) => { props.setIsRecording(true); e.currentTarget.focus(); }}
                             tabIndex={0}
                             onKeyDown={(e) => {
                                 if (!props.isRecording) return;
