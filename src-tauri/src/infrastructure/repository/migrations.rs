@@ -187,7 +187,7 @@ pub fn run_migrations(conn: &Connection) -> Result<()> {
         conn.execute("INSERT INTO schema_migrations (version) VALUES (8)", [])?;
     }
 
-    // Migration 9: Persist source executable path for real app icon rendering
+    // Migration 9: Persist source app path for source icon rendering
     if current_version < 9 {
         if !has_column(conn, "clipboard_history", "source_app_path")? {
             conn.execute(
@@ -196,6 +196,15 @@ pub fn run_migrations(conn: &Connection) -> Result<()> {
             )?;
         }
         conn.execute("INSERT INTO schema_migrations (version) VALUES (9)", [])?;
+    }
+
+    // Migration 10: Cloud sync content type preferences (per-device; not synced in settings snapshot)
+    if current_version < 10 {
+        conn.execute(
+            "INSERT OR IGNORE INTO settings (key, value) VALUES ('cloud_sync_content_prefs', '{\"text\":true,\"image\":true,\"file_path\":true,\"emoji\":true}')",
+            [],
+        )?;
+        conn.execute("INSERT INTO schema_migrations (version) VALUES (10)", [])?;
     }
 
     Ok(())
